@@ -24,7 +24,8 @@ class Task extends Component {
       window.location.reload();
     }
     catch (e) {
-      alert(e.response.status + ': ' + e.response.data.message);
+      if (e.response && e.response.status && e.response.data.message)
+        alert(e.response.status + ': ' + e.response.data.message);
     }
   }
 
@@ -34,7 +35,8 @@ class Task extends Component {
       window.location.reload();
     }
     catch (e) {
-      alert(e.response.status + ': ' + e.response.data.message);
+      if (e.response && e.response.status && e.response.data.message)
+        alert(e.response.status + ': ' + e.response.data.message);
     }
   }
 

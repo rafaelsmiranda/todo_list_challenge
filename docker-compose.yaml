@@ -1,0 +1,36 @@
+version: "3"
+services:
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    environment:
+      - PORT=8081
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./frontend:/usr/code/frontend
+    tty: true
+
+  backend:
+    build: ./backend
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://postgres:password@postgres:5432/postgres
+      NODE_ENV: development
+      PORT: 3001
+    ports:
+      - "3001:3001"
+    command: npm start
+    volumes:
+      - ./backend:/usr/code/backend
+
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres

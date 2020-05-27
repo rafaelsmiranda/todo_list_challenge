@@ -20,9 +20,8 @@ class Checkbox extends Component {
         window.location.reload();
       }
       catch (e) {
-        if (e.response) {
+        if (e.response && e.response.status && e.response.data.message)
           alert(e.response.status + ': ' + e.response.data.message);
-        }
       }
     }
   }

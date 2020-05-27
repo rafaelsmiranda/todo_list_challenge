@@ -43,7 +43,14 @@ class Login extends Component {
       loading: true
     });
 
-    await apiService.signup(this.state.name, this.state.email, this.state.password)
+    try {
+      await apiService.signup(this.state.name, this.state.email, this.state.password)
+      window.location.reload();
+    }
+    catch (e) {
+      if (e.response && e.response.status && e.response.data.message)
+        alert(e.response.status + ': ' + e.response.data.message);
+    }
   }
 
   render() {
