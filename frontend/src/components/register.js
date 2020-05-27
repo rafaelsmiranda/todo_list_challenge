@@ -45,6 +45,7 @@ class Login extends Component {
 
     try {
       await apiService.signup(this.state.name, this.state.email, this.state.password)
+      await apiService.signin(this.state.email, this.state.password)
       window.location.reload();
     }
     catch (e) {
