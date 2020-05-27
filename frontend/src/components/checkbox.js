@@ -1,17 +1,32 @@
 import React, { Component } from 'react';
+import apiService from "../api/apiService";
 
 class Checkbox extends Component {
   constructor(props) {
     super(props);
-    this.state = { checked: this.props.checked }
+    this.state = { checked: this.props.checked, projectId: this.props.projectId, taskId: this.props.taskId }
     this.handleCheck = this.handleCheck.bind(this);
   }
 
-  handleCheck(e) {
-    this.setState({
-      checked: e.target.checked
-    })
+  async handleCheck(e) {
+
+    if (!this.props.checked) {
+      this.setState({
+        checked: e.target.checked
+      })
+
+      try {
+        await apiService.finishTask(this.state.projectId, this.state.taskId)
+        window.location.reload();
+      }
+      catch (e) {
+        if (e.response) {
+          alert(e.response.status + ': ' + e.response.data.message);
+        }
+      }
+    }
   }
+
   render() {
     return (
       <div>

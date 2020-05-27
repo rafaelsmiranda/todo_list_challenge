@@ -49,7 +49,7 @@ exports.updateProject = async (req, res) => {
 
 exports.getAllProjects = async (req, res) => {
   try {
-    const projects = await db.Project.findAll({ where: { UserId: req.userId }, include: db.Task })
+    const projects = await db.Project.findAll({ where: { UserId: req.userId }, include: [{ model: db.Task, order: ['id'] }], order: ['id'] })
     res.send(projects)
   }
   catch (e) {
@@ -62,7 +62,7 @@ exports.getProject = async (req, res) => {
   const { projectId } = req.params
 
   try {
-    const project = await db.Project.findOne({ where: { id: projectId, UserId: req.userId }, include: db.Task })
+    const project = await db.Project.findOne({ where: { id: projectId, UserId: req.userId }, include: [{ model: db.Task, order: ['id'] }] })
 
     if (!project) {
       res.status(404).send({ message: "Project not found" })
