@@ -1,0 +1,48 @@
+.app {
+  background: black;
+  padding: 30px;
+  height: 100vh;
+}
+
+.project-form {
+  background: #8eaabd;
+  border-radius: 5px;
+  padding: 5px 0px 10px 0px;
+  width: 300px;
+  border-radius: 5px;
+  margin: 10px;
+  text-align: center;
+}
+
+.project-list {
+  display: flex;
+}
+
+.project {
+  background: #8eaabd;
+  border-radius: 5px;
+  padding: 5px;
+  width: 300px;
+  border-radius: 5px;
+  margin: 10px;
+  text-align: center;
+}
+
+.task-list {
+  background: #8f8f8f;
+  border-radius: 4px;
+  padding: 5px;
+  max-width: 400px;
+}
+
+.task {
+  background: #fff;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+  padding: 5px 10px;
+  font-size: 14px;
+  margin: 3px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
