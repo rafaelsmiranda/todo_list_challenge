@@ -7,42 +7,40 @@ class apiService {
   }
 
   deleteProject(projectId) {
-    return api.delete('/project/${projectId}', { headers: authHeader() });
+    return api.delete('/project/' + projectId, { headers: authHeader() });
   }
 
-  createProject(data) {
-    return api.post('/project', data, { headers: authHeader() });
+  createProject(title) {
+    return api.post('/project', { title }, { headers: authHeader() });
   }
 
-  updateProject(projectId, data) {
-    return api.put('/project/${projectId}', data, { headers: authHeader() });
+  updateProject(projectId, title) {
+    console.log(projectId)
+    console.log(title)
+    return api.put('/project/' + projectId, { title }, { headers: authHeader() });
   }
 
   deleteTask(projectId, taskId) {
-    return api.delete('/project/${projectId}/task/${taskId}', { headers: authHeader() });
+    return api.delete('/project/' + projectId + '/task/' + taskId, { headers: authHeader() });
   }
 
-  createTask(data) {
-    return api.post('/project/${projectId}/task', data, { headers: authHeader() });
+  createTask(projectId, description) {
+    return api.post('/project/' + projectId + '/task', { description }, { headers: authHeader() });
   }
 
-  updateTask(projectId, taskId, data) {
-    return api.put('/project/${projectId}/task/${taskId}', data, { headers: authHeader() });
+  updateTask(projectId, taskId, description) {
+    return api.put('/project/' + projectId + '/task/' + taskId, { description }, { headers: authHeader() });
   }
 
   finishTask(projectId, taskId) {
-    return api.put('/project/${projectId}/${taskId}', { headers: authHeader() });
+    return api.put('/project/' + projectId + '/task/' + taskId + '/finish', {}, { headers: authHeader() });
   }
 
-  signup(username, email, password) {
-    return api.post("/signup", {
-      username,
-      email,
-      password
-    });
+  signup(name, email, password) {
+    return api.post("/signup", { name, email, password });
   }
 
-  sigin(email, password) {
+  signin(email, password) {
     return api.post("/signin", { email, password }).then(response => {
       if (response.data.accessToken) {
         localStorage.setItem("user", JSON.stringify(response.data));
@@ -52,7 +50,7 @@ class apiService {
     });
   }
 
-  getLoggedUser() {
+  getSignedUser() {
     return JSON.parse(localStorage.getItem('user'));;
   }
 

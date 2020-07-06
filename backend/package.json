@@ -1,7 +1,7 @@
 {
-  "name": "edirectinsure-backend",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "EDirectInsure Challenge",
+  "description": "Backend for the Challenge",
   "main": "server.js",
   "scripts": {
     "start": "node server"
